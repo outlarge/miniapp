@@ -1,0 +1,79 @@
+{
+  "hoodie1": {
+    "name": "Militant PRO🛡️",
+    "category": "hoodie",
+    "sizes": "S / M / L / XL / XXL",
+    "price": "1500₴",
+    "delivery": "по всей Украине и Европе",
+    "photos": [
+      "https://i.ibb.co/hJHLL7Cr/photo-2025-11-07-18-32-31.jpg",
+      "https://i.ibb.co/r2Z2nJQq/photo-2025-11-07-18-32-31-2.jpg"
+    ]
+  },
+  "hoodie2": {
+    "name": "Misantrope Hardcore🥀",
+    "category": "hoodie",
+    "sizes": "S / M / L / XL / XXL",
+    "price": "1500₴",
+    "delivery": "по всей Украине и Европе",
+    "photos": [
+      "https://i.ibb.co/jk1g9TwT/photo-2025-11-07-18-32-30.jpg",
+      "https://i.ibb.co/nqXMc9bm/photo-2025-11-07-18-32-29.jpg"
+    ]
+  },
+  "hoodie3": {
+    "name": "Misantrop👺",
+    "category": "hoodie",
+    "sizes": "S / M / L / XL / XXL",
+    "price": "1500₴",
+    "delivery": "по всей Украине и Европе",
+    "photos": [
+      "https://i.ibb.co/qFjChrVw/photo-2025-11-07-18-32-28.jpg",
+      "https://i.ibb.co/tT8hnNt4/photo-2025-11-07-18-32-28-2.jpg"
+    ]
+  },
+  "hoodie4": {
+    "name": "H8RDC8RE💥",
+    "category": "hoodie",
+    "sizes": "S / M / L / XL / XXL",
+    "price": "1500₴",
+    "delivery": "по всей Украине и Европе",
+    "photos": [
+      "https://i.ibb.co/VcTYXZ0z/photo-2025-11-07-18-32-26.jpg",
+      "https://i.ibb.co/SDdJBq21/photo-2025-11-07-18-32-25.jpg"
+    ]
+  },
+  "hoodie5": {
+    "name": "H8RD⚡️C8RE",
+    "category": "hoodie",
+    "sizes": "S / M / L / XL / XXL",
+    "price": "1750₴",
+    "delivery": "по всей Украине и Европе",
+    "photos": [
+      "https://i.ibb.co/TDChRvvZ/photo-2025-11-10-00-39-07.jpg",
+      "https://i.ibb.co/Hpf3qJF7/photo-2025-11-10-00-55-53.jpg"
+    ]
+  },
+  "hoodie6": {
+    "name": "Wintersmith ❄️",
+    "category": "hoodie",
+    "sizes": "S / M / L / XL / XXL",
+    "price": "1500₴",
+    "delivery": "по всей Украине и Европе",
+    "photos": [
+      "https://i.ibb.co/BD7SZ99/photo-2025-11-10-00-58-18.jpg",
+      "https://i.ibb.co/Lz75vyF3/photo-2025-11-10-00-58-18-2.jpg"
+    ]
+  },
+  "tshirt1": {
+    "name": "Militant PRO🛡️",
+    "category": "tshirt",
+    "sizes": "S / M / L / XL / XXL",
+    "price": "1000₴",
+    "delivery": "по всей Украине и Европе",
+    "photos": [
+      "https://i.ibb.co/svVK4vhL/photo-2025-11-09-18-43-34.jpg",
+      "https://i.ibb.co/1YvbdGYv/photo-2025-11-09-18-43-35.jpg"
+    ]
+  }
+}
