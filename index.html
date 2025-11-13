@@ -3,84 +3,187 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Магазин Militant</title>
+  <title>Militant Store</title>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <style>
+    :root {
+      --bg: var(--tg-theme-bg-color, #0d1117);
+      --text: var(--tg-theme-text-color, #fff);
+      --secondary-bg: var(--tg-theme-secondary-bg-color, #161b22);
+      --hint: var(--tg-theme-hint-color, #aaa);
+      --accent: var(--tg-theme-button-color, #2AABEE);
+      --accent-text: var(--tg-theme-button-text-color, #fff);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: system-ui, sans-serif;
-      background: var(--tg-theme-bg-color);
-      color: var(--tg-theme-text-color);
-      margin: 0; padding: 16px;
+      margin: 0;
+      font-family: "Inter", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 20px;
+      transition: 0.3s;
     }
+
+    h1 {
+      text-align: center;
+      font-size: 1.7em;
+      margin-bottom: 25px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
     .product {
-      background: var(--tg-theme-secondary-bg-color);
-      border-radius: 14px;
-      padding: 16px;
-      margin-bottom: 18px;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+      background: var(--secondary-bg);
+      border-radius: 16px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      overflow: hidden;
+      transition: transform .2s;
     }
-    img { width: 100%; border-radius: 12px; }
+
+    .product:hover {
+      transform: scale(1.02);
+    }
+
+    .product img {
+      width: 100%;
+      display: block;
+    }
+
+    .info {
+      padding: 16px;
+    }
+
+    .info h2 {
+      margin: 0 0 8px;
+      font-size: 1.2em;
+    }
+
+    .info p {
+      margin: 4px 0;
+      color: var(--hint);
+    }
+
     select, input, textarea, button {
       width: 100%;
       margin-top: 8px;
       padding: 10px;
-      border-radius: 8px;
-      border: 1px solid var(--tg-theme-hint-color);
-      background: var(--tg-theme-bg-color);
-      color: var(--tg-theme-text-color);
+      border-radius: 10px;
+      border: none;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 0.95em;
       box-sizing: border-box;
     }
+
     button {
-      background: var(--tg-theme-button-color);
-      color: var(--tg-theme-button-text-color);
-      border: none;
+      background: var(--accent);
+      color: var(--accent-text);
+      font-weight: 600;
       cursor: pointer;
-      font-weight: bold;
+      transition: 0.2s;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .confirm {
+      text-align: center;
+      padding-top: 40px;
+      animation: fadeIn 0.6s ease;
+    }
+
+    .checkmark {
+      font-size: 4em;
+      color: var(--accent);
+      animation: pop 0.4s ease;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0.6); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @media (min-width: 700px) {
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 0.9em;
+      color: var(--hint);
     }
   </style>
 </head>
 <body>
-  <h2>🛍 Магазин Militant</h2>
-  <div id="product"></div>
+  <h1>🛡 Militant Store</h1>
+
+  <div id="content">
+    <div class="grid" id="products"></div>
+  </div>
+
+  <footer>© 2025 Militant Apparel</footer>
 
   <script>
     const tg = window.Telegram.WebApp;
     tg.expand();
 
-    // --- Товары ---
     const PRODUCTS = [
       {
         name: "Militant PRO🛡️",
         price: "1500₴",
-        sizes: ["S", "M", "L", "XL", "XXL"],
-        photo: "https://i.ibb.co/hJHLL7Cr/hoodie1.jpg"
+        photo: "https://i.ibb.co/hJHLL7Cr/hoodie1.jpg",
+        sizes: ["S", "M", "L", "XL", "XXL"]
       },
       {
         name: "Militant Classic",
         price: "1300₴",
-        sizes: ["S", "M", "L", "XL", "XXL"],
-        photo: "https://i.ibb.co/qNrJfsQ/hoodie2.jpg"
+        photo: "https://i.ibb.co/qNrJfsQ/hoodie2.jpg",
+        sizes: ["S", "M", "L", "XL", "XXL"]
       }
     ];
 
-    const container = document.getElementById("product");
+    const container = document.getElementById("products");
 
     PRODUCTS.forEach((p, i) => {
       const div = document.createElement("div");
       div.className = "product";
       div.innerHTML = `
         <img src="${p.photo}" alt="${p.name}">
-        <h3>${p.name}</h3>
-        <p>💰 ${p.price}</p>
-        <label>Размер:</label>
-        <select id="size_${i}">
-          ${p.sizes.map(s => `<option value="${s}">${s}</option>`).join('')}
-        </select>
-        <label>ФИО:</label><input id="fio_${i}" placeholder="Введите ФИО">
-        <label>Город:</label><input id="city_${i}" placeholder="Введите город">
-        <label>Телефон:</label><input id="phone_${i}" placeholder="+380...">
-        <label>Комментарий:</label><textarea id="comment_${i}" placeholder="Дополнительная информация (необязательно)"></textarea>
-        <button onclick="sendOrder(${i})">Отправить заказ</button>
+        <div class="info">
+          <h2>${p.name}</h2>
+          <p>💰 ${p.price}</p>
+          <label>📏 Размер:</label>
+          <select id="size_${i}">
+            ${p.sizes.map(s => `<option value="${s}">${s}</option>`).join('')}
+          </select>
+          <label>👤 ФИО:</label>
+          <input id="fio_${i}" placeholder="Введите ФИО">
+          <label>🏙 Город:</label>
+          <input id="city_${i}" placeholder="Введите город">
+          <label>📞 Телефон:</label>
+          <input id="phone_${i}" placeholder="+380...">
+          <label>💬 Комментарий:</label>
+          <textarea id="comment_${i}" placeholder="Дополнительная информация (необязательно)"></textarea>
+          <button onclick="sendOrder(${i})">Отправить заказ</button>
+        </div>
       `;
       container.appendChild(div);
     });
@@ -96,8 +199,18 @@
         comment: document.getElementById(`comment_${i}`).value
       };
 
+      // Отправляем заказ в Telegram
       tg.sendData(JSON.stringify(order));
-      tg.close();
+
+      // Показываем экран подтверждения
+      document.getElementById("content").innerHTML = `
+        <div class="confirm">
+          <div class="checkmark">✅</div>
+          <h2>Спасибо за заказ!</h2>
+          <p>Наш менеджер свяжется с вами в ближайшее время.</p>
+          <button onclick="tg.close()">⬅️ Назад в Telegram</button>
+        </div>
+      `;
     }
   </script>
 </body>
